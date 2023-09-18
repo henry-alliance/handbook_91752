@@ -1,5 +1,7 @@
+@import url(Lexend-VariableFont_wght.ttf);
+
 html {
-    font-family: Lexend, 'sans serif'
+    font-family: 'Lexend', sans-serif;
 }
 
 h1 {

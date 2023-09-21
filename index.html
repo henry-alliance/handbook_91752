@@ -31,6 +31,8 @@
     <script>
         function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : evt.keyCode
+            if (charCode == 13)
+                submit_shortcut()
             if (charCode > 31 && (charCode < 48 || charCode > 57))
                 return false;
             if (parseInt(document.querySelector("input").value + String.fromCharCode(charCode)) < 1 || parseInt(document.querySelector("input").value + String.fromCharCode(charCode)) > 18)

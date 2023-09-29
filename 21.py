@@ -28,11 +28,34 @@ class Game():
     player_cards = {f"player_{str(num+1)}":[] for num in range(p_count)}
     print(__deck)
     print()
-    # print(str(player_cards))
 
-    def hit(self, p_num):
-        
 
-a = Game()
-print(a.p_count)
-print(a.player_cards)
+    def hit(self, p_num: int):
+        j = random.choice(self.__deck)
+        self.player_cards["player_{}".format(str(p_num))].append(j)
+        self.__deck.remove(j)
+
+
+    def check_winner(self):
+        temp_cards = {h:j for h in list(self.player_cards.keys()) for j in list(self.player_cards.values())}
+        numbers = ["2","3","4","5","6","7","8","9","10"]
+        non_num_cards = ["Ace", "Jack", "Queen", "King"]
+        non_num_card_values = {"Ace": 1, "Jack": 10, "Queen": 10, "King": 10}
+        for player in temp_cards:
+            for i in player:
+                for k in numbers:
+                    if k in i:
+                        i = int(k)
+                    elif k not in i:
+                        if k is numbers[-1]:
+                            for n in non_num_cards:
+                                if n in i:
+                                    i = non_num_card_values[n]
+        print(temp_cards)
+game = Game()
+print(game.p_count)
+print(game.player_cards)
+for f in range(4):
+    game.hit(f+1)
+print(game.player_cards)
+game.check_winner()

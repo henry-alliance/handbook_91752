@@ -1,5 +1,8 @@
 """a"""
 from getkey import getkey
+import random
+import time
+import os
 
 hiragana_kana = {
     "あ": ["a"],
@@ -9,7 +12,8 @@ hiragana_kana = {
     "う": ["u"],
     "か": ["ka"],
     "け": ["ke"],
-    "こ": ["ki"],
+    "き": ["ki"],
+    "こ": ["ko"],
     "く": ["ku"],
     "さ": ["sa"],
     "せ": ["se"],
@@ -30,25 +34,250 @@ hiragana_kana = {
     "へ": ["he"],
     "ひ": ["hi"],
     "ほ": ["ho"],
-    "ふ": ["hu", "fu"],
-    "ま": [""],
-    "め": [""],
-    "み": [""],
-    "も": [""],
-    "む": [""],
-    "": [""],
-    "": [""],
-    "": [""]
+    "ふ": ["fu", "hu"],
+    "ま": ["ma"],
+    "め": ["me"],
+    "み": ["mi"],
+    "も": ["mo"],
+    "む": ["mu"],
+    "や": ["ya"],
+    "よ": ["yo"],
+    "ゆ": ["yu"],
+    "ら": ["ra"],
+    "れ": ["re"],
+    "り": ["ri"],
+    "ろ": ["ro"],
+    "る": ["ru"],
+    "わ": ["wa"],
+    "を": ["wo"],
+    "ん": ["n"],
+    "が": ["ga"],
+    "げ": ["ge"],
+    "ぎ": ["gi"],
+    "ご": ["go"],
+    "ぐ": ["gu"],
+    "ざ": ["za"],
+    "ぜ": ["ze"],
+    "じ": ["ji"],
+    "ぞ": ["zo"],
+    "ず": ["zu"],
+    "だ": ["da"],
+    "で": ["de"],
+    "ぢ": ["di", "dzi"],
+    "ど": ["do"],
+    "づ": ["du", "dzu"],
+    "ば": ["ba"],
+    "べ": ["be"],
+    "び": ["bi"],
+    "ぼ": ["bo"],
+    "ぶ": ["bu"],
+    "ぱ": ["pa"],
+    "ぺ": ["pe"],
+    "ぴ": ["pi"],
+    "ぽ": ["po"],
+    "ぷ": ["pu"],
+    "きゃ": ["kya"],
+    "きょ": ["kyo"],
+    "きゅ": ["kyu"],
+    "ぎゃ": ["gya"],
+    "ぎょ": ["gyo"],
+    "ぎゅ": ["gyu"],
+    "しゃ": ["sha", "shya"],
+    "しょ": ["sho", "shyo"],
+    "しゅ": ["shu", "shyu"],
+    "じゃ": ["ja", "jya"],
+    "じょ": ["jo", "jyo"],
+    "じゅ": ["ju", "jyu"],
+    "ちゃ": ["cha"],
+    "ちょ": ["cho"],
+    "ちゅ": ["chu"],
+    "ぢゃ": ["dya"],
+    "ぢょ": ["dyo"],
+    "ぢゅ": ["dyu"],
+    "にゃ": ["nya"],
+    "にょ": ["nyo"],
+    "にゅ": ["nyu"],
+    "ひゃ": ["hya"],
+    "ひょ": ["hyo"],
+    "ひゅ": ["hyu"],
+    "びゃ": ["bya"],
+    "びょ": ["byo"],
+    "びゅ": ["byu"],
+    "ぴゃ": ["pya"],
+    "ぴょ": ["pyo"],
+    "ぴゅ": ["pyu"],
+    "みゃ": ["mya"],
+    "みょ": ["myo"],
+    "みゅ": ["myu"],
+    "りゃ": ["rya"],
+    "りょ": ["ryo"],
+    "りゅ": ["ryu"],
 }
 
+katakana_kana = {
+    "ア": ["a"],
+    "エ": ["e"],
+    "イ": ["i"],
+    "オ": ["o"],
+    "ウ": ["u"],
+    "カ": ["ka"],
+    "ケ": ["ke"],
+    "キ": ["ki"],
+    "コ": ["ko"],
+    "ク": ["ku"],
+    "サ": ["sa"],
+    "セ": ["se"],
+    "シ": ["si"],
+    "ソ": ["so"],
+    "ス": ["su"],
+    "タ": ["ta"],
+    "テ": ["te"],
+    "チ": ["ti"],
+    "ト": ["to"],
+    "ツ": ["tu"],
+    "ナ": ["na"],
+    "ネ": ["ne"],
+    "ニ": ["ni"],
+    "ノ": ["no"],
+    "ヌ": ["nu"],
+    "ハ": ["ha"],
+    "へ": ["he"],
+    "ヒ": ["hi"],
+    "ホ": ["ho"],
+    "ふ": ["fu", "hu"],
+    "マ": ["ma"],
+    "メ": ["me"],
+    "ミ": ["mi"],
+    "モ": ["mo"],
+    "ム": ["mu"],
+    "ヤ": ["ya"],
+    "ヨ": ["yo"],
+    "ユ": ["yu"],
+    "ラ": ["ra"],
+    "レ": ["re"],
+    "リ": ["ri"],
+    "ロ": ["ro"],
+    "ル": ["ru"],
+    "ワ": ["wa"],
+    "ヲ": ["wo"],
+    "ン": ["n"],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+    "": [""],
+
+}
+os.system("clear")
 print("KANA TEST\n")
 while True:
-    hiragana_or_katakana = input("Hiragana (1) or Katana (2): ")
+    hiragana_or_katakana = input("Hiragana (1) or Katakana (2): ")
     if hiragana_or_katakana in ["1","2"]:
         break
 
-if hiragana_or_katakana == "1":
+def hiragana_test():
     # hiragana test
+    os.system("clear")
+    test_info = {i:[0.0, 0] for i in hiragana_kana}
+    questions = list(hiragana_kana.keys()).copy()
+    random.shuffle(questions)
+    for q in questions:
+        os.system("clear")
+        print("TESTING HIRAGANA ({} left)\n".format(len(questions)-questions.index(q)))
+        print("KANA:", q)
+        start_time = time.time()
+        while True:
+            answer = input("Romaji: ")
+            if answer != '':
+                break
+        if answer == "babababa":
+            break
+        if answer in hiragana_kana[q]:
+            test_info[q][1] = 1
+            print("Correct!")
+        elif answer not in hiragana_kana[q]:
+            print("Incorrect. The correct answer was '" + hiragana_kana[q][0] + "'.")
+        test_info[q][0] = time.time() - start_time
+        key = ""
+        while True:
+            key = getkey()
+            if key == '\n':
+                break
+    
+    score = 0
 
-elif hiragana_or_katakana == "2":
+    for kana in test_info:
+        print(kana + ": Answered in", str(test_info[kana][0])[:str(test_info[kana][0]).index(".")+2] + "s. ", end='')
+        if test_info[kana][1] == 1:
+            print("You got it right!")
+            score += 1
+        elif test_info[kana][1] == 0:
+            print("You got it wrong.")
+    print('\nYour grade:', str(score/len(hiragana_kana)*100)[:5] + '%')
+
+
+def katakana_test():
     # katakana test
+    os.system("clear")
+    test_info = {i:[0.0, 0] for i in katakana_kana}
+    questions = list(katakana_kana.keys()).copy()
+    random.shuffle(questions)
+    for q in questions:
+        os.system("clear")
+        print("TESTING KATAKANA ({} left)\n".format(len(questions)-questions.index(q)))
+        print("KANA:", q)
+        start_time = time.time()
+        while True:
+            answer = input("Romaji: ")
+            if answer != '':
+                break
+        if answer == "babababa":
+            break
+        if answer in katakana_kana[q]:
+            test_info[q][1] = 1
+            print("Correct!")
+        elif answer not in katakana_kana[q]:
+            print("Incorrect. The correct answer was '" + katakana_kana[q][0] + "'.")
+        test_info[q][0] = time.time() - start_time
+        key = ""
+        while True:
+            key = getkey()
+            if key == '\n':
+                break
+    
+    score = 0
+
+    for kana in test_info:
+        print(kana + ": Answered in", str(test_info[kana][0])[:str(test_info[kana][0]).index(".")+2] + "s. ", end='')
+        if test_info[kana][1] == 1:
+            print("You got it right!")
+            score += 1
+        elif test_info[kana][1] == 0:
+            print("You got it wrong.")
+    print('\nYour grade:', str(score/len(katakana_kana)*100)[:5] + '%')
+if hiragana_or_katakana == "1":
+    hiragana_test()
+elif hiragana_or_katakana == "2":
+    katakana_test()
+# elif hiragana_or_katakana == "2":
+#     # katakana test

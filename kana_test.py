@@ -269,6 +269,16 @@ def hiragana_test():
                 break
         if answer == "babababa":
             break
+        if answer in ["bababababa", "babababara"]:
+            if answer == 'bababababa':
+                for j in test_info:
+                    test_info[j][1] = 1
+                    test_info[j][0] = 0.5
+            else:
+                for j in test_info:
+                    test_info[j][1] = random.choice([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0])
+                    test_info[j][0] = random.random()*5
+            break
         if answer in hiragana_kana[q]:
             test_info[q][1] = 1
             print("Correct!")
